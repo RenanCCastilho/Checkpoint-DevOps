@@ -16,7 +16,7 @@ public class Veiculo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String marca;
+	private String modelo;
 	private String montadora;
 	private int anoFabricacao;
 	private double km;
@@ -28,8 +28,8 @@ public class Veiculo {
 	public Veiculo() {
 	}
 
-	public Veiculo(String marca, String montadora, int anoFabricacao, double km, Proprietario proprietario) {
-		this.marca = marca;
+	public Veiculo(String modelo, String montadora, int anoFabricacao, double km, Proprietario proprietario) {
+		this.modelo = modelo;
 		this.montadora = montadora;
 		this.anoFabricacao = anoFabricacao;
 		this.km = km;
@@ -44,12 +44,12 @@ public class Veiculo {
 		this.id = id;
 	}
 
-	public String getMarca() {
-		return marca;
+	public String getModelo() {
+		return modelo;
 	}
 
-	public void setMarca(String marca) {
-		this.marca = marca;
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
 	}
 
 	public String getMontadora() {
