@@ -1,98 +1,101 @@
 # Checkpoint-DevOps
 
 # Lista de Endpoints
-## ***Empresas***
+## ***Proprietarios***
 ## GET 
-https://api.example.com/api/empresas
-### Descrição: Consulta a lista de empresas cadastradas.
+https://motorapp.azurewebsites.net/proprietarios
+### Descrição: Consulta a lista de proprietarios cadastrados.
 ### Exemplo de resposta:
           
-       {
-              "id": 19,
-              "nome": "Silvio Hairs",
-              "segmento": "Cabeleireiro",
-              "endereco": "Av Imirim",
-              "km": 4.0,
-              "favorito": false
+          {
+              "nome": "Proprietario",
+              "cidade": "Cidade do Proprietario",
+              "telefone": "Telefone do Proprietario"
           }
 
+
 ## POST
-https://api.example.com/api/empresas 
-### Descrição: Cadastra uma nova empresa.
+https://motorapp.azurewebsites.net/proprietarios
+### Descrição: Cadastra um novo proprietario.
 ### Exemplo de solicitação:
 
-      {
-        "id": 21,
-        "nome": "Transported Kolirio",
-        "segmento": "Frete",
-        "endereco": "AV Di Ines Silva",
-        "km": 9.0,
-        "favorito": false
-      },
+          {
+          "nome": "Novo Proprietario",
+          "cidade": "Cidade do Novo Proprietario",
+          "telefone": "Telefone do Novo Proprietario"
+          }
+
 
 
 ## PUT 
-https://api.example.com/api/empresas/21
-### Descrição: Atualiza informações sobre a empresa cadastrada.
+https://motorapp.azurewebsites.net/proprietarios/1
+### Descrição: Atualiza informações sobre o proprietario cadastrado.
 ### Exemplo de solicitação:
 
-      {
-        "id": 21,
-        "nome": "Transported Kolirio",
-        "segmento": "Frete",
-        "endereco": "AV Di Ines Silva",
-        "km": 9.0,
-        "favorito": false
-      },
+            {
+              "nome": "Atualizar Proprietario",
+              "cidade": "Atualizar cidade do Proprietario",
+              "telefone": "Atualizar telefone do Proprietario"
+          }
+
 
 
 ## DELETE 
-https://api.example.com/api/empresas/21
-### Descrição: Deleta a empresa selecionada. No caso deletará a empresa com o id = 21.
-## ***Agendamentos***
+https://motorapp.azurewebsites.net/proprietarios/1
+### Descrição: Deleta o proprietario selecionado. No caso deletará o proprietario com o id = 1.
+## ***Veiculos***
 ## GET 
-https://api.example.com/api/agendamentos
-### Descrição: Consulta a lista de agendamentos cadastrados. 
+https://motorapp.azurewebsites.net/veiculos
+### Descrição: Consulta a lista de veículos cadastrados. 
 ### Exemplo de resposta:
           
-    {
-        "id": 13,
-        "empresa": {
-            "id": 6,
-            "nome": "Piratas",
-            "segmento": "Barbeiro",
-            "endereco": "Rua Dário Ribeiro",
-            "km": 5.0,
-            "favorito": false
-        },
-       "dataHora": "10-09-2023 16:00:00"
-    },
+          {
+              "modelo": "Modelo do Veiculo",
+              "montadora": "Montadora do Veiculo",
+              "anoFabricacao": 2023,
+              "km": 0.0,
+              "proprietario": {
+                  "id": 1
+                  "nome": "Nome do Proprietario"
+                  "cidade": "Cidade do Propretario"
+                  "telefone": "Telefone do Proprietario"
+              }
+          }
+          
 
 ## POST
-https://api.example.com/api/agendamentos
-### Observação: Colocar id de uma empresa ja cadastrada!
-### Descrição: Cadastra um novo agendamento.
+https://motorapp.azurewebsites.net/veiculos
+### Observação: Colocar id de um proprietario ja cadastrado!
+### Descrição: Cadastra um novo veículo
 ### Exemplo de solicitação:
 
-    {
-        "empresa":{ "id": 13
-    },
-        "dataHora": "10-09-2023 16:00:00"
-    }
+          {
+              "modelo": "Modelo do Novo Veiculo",
+              "montadora": "Montadora do Novo Veiculo",
+              "anoFabricacao": 2023,
+              "km": 0.0,
+              "proprietario": {
+                  "id": 1
+              }
+          }
 
 
 ## PUT 
-https://api.example.com/api/agendamentos/13
-### Descrição: Atualiza informações sobre o agendamento cadastrado.
+https://motorapp.azurewebsites.net/veiculos/1
+### Descrição: Atualiza informações sobre o veículo cadastrado.
 ### Exemplo de solicitação:
 
-    {
-        "empresa":{ "id": 13
-    },
-        "dataHora": "20-10-2023 19:40:00"
-    }
+       {
+              "modelo": "Atualiza o modelo do Veiculo",
+              "montadora": "Atualiza a montadora do Veiculo",
+              "anoFabricacao": 2023,
+              "km": 0.0,
+              "proprietario": {
+                  "id": 1
+              }
+          }
 
 
 ## DELETE 
-https://api.example.com/api/agendamentos/13 
-### Descrição: Deleta o agendamento selecionado. No caso deletará o agendamento com o id = 13.
+https://motorapp.azurewebsites.net/veiculos/1
+### Descrição: Deleta o veículo selecionado. No caso deletará o veículo com o id = 1.
