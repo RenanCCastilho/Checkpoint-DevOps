@@ -44,7 +44,7 @@ public class ProprietarioController {
     public ResponseEntity<Proprietario> updateProprietario(@PathVariable Long id, @RequestBody Proprietario proprietario) {
         Optional<Proprietario> existingProprietario = proprietarioService.findById(id);
         if (existingProprietario.isPresent()) {
-            Proprietario updatedProprietario = proprietarioService.update(id, proprietario);
+            Proprietario updatedProprietario = proprietarioService.updateProprietario(id, proprietario);
             return new ResponseEntity<>(updatedProprietario, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
