@@ -36,7 +36,7 @@ public class VeiculoService {
 		veiculoRepository.deleteById(id);
 	}
 
-	public Veiculo update(Long id, Veiculo updatedVeiculo) {
+	public Veiculo updateVeiculo(Long id, Veiculo updatedVeiculo) {
 		Optional<Veiculo> existingVeiculo = veiculoRepository.findById(id);
 		if (existingVeiculo.isPresent()) {
 			Veiculo veiculo = existingVeiculo.get();
