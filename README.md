@@ -104,24 +104,24 @@ https://motorapp.azurewebsites.net/veiculos/1
 # How To Implementação do projeto em nuvem
 
 1) 
-No SqlDeveloper acesse sua conta no banco e execute o script que está no arquivo txt "DDL_BD"
+No SqlDeveloper acesse sua conta no banco e execute o script que está no arquivo txt "DDL_BD";
 
 2) 
 Baixe nosso código fonte em nosso repositório no GitHub:
-https://github.com/RenanCCastilho/Checkpoint-DevOps
+https://github.com/RenanCCastilho/Checkpoint-DevOps;
 
 3)
 Na aba básico, defina o nome do seu web app;
 Na coluna pilha de runTime coloque Java17;
 Sistema Operacional: selecione o seu sistema operacional;
-região: Brazil South
+região: Brazil South;
 
 4)
 Na aba implementação deixe a opção habilitar na coluna implementação contínua;
 Autorize a sua conta do github;
 Organização: nome de usuário do github;
 repositório: repositorio onde está o projeto;
-branch: main
+branch: main;
 
 5)
 Na aba rede deixe o acesso público ATIVADO;
