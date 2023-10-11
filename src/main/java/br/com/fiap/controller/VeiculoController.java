@@ -27,7 +27,7 @@ public class VeiculoController {
         return veiculoService.findAll();
     }
 
-    @GetMapping("/veiculos/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Veiculo> getVeiculoById(@PathVariable Long id) {
         Optional<Veiculo> veiculo = veiculoService.findById(id);
         return veiculo.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
@@ -40,7 +40,7 @@ public class VeiculoController {
         return new ResponseEntity<>(savedVeiculo, HttpStatus.CREATED);
     }
 
-    @PutMapping("/veiculos/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Veiculo> updateVeiculo(@PathVariable Long id, @RequestBody Veiculo veiculo) {
         Optional<Veiculo> existingVeiculo = veiculoService.findById(id);
         if (existingVeiculo.isPresent()) {
@@ -51,7 +51,7 @@ public class VeiculoController {
         }
     }
 
-    @DeleteMapping("/veiculos/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteVeiculo(@PathVariable Long id) {
         veiculoService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
