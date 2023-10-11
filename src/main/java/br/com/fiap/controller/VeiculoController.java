@@ -40,7 +40,7 @@ public class VeiculoController {
         return new ResponseEntity<>(savedVeiculo, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("veiculo/{id}")
     public ResponseEntity<Veiculo> updateVeiculo(@PathVariable Long id, @RequestBody Veiculo veiculo) {
         Optional<Veiculo> existingVeiculo = veiculoService.findById(id);
         if (existingVeiculo.isPresent()) {
@@ -51,7 +51,7 @@ public class VeiculoController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("veiculo/{id}")
     public ResponseEntity<Void> deleteVeiculo(@PathVariable Long id) {
         veiculoService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
