@@ -27,7 +27,7 @@ public class ProprietarioController {
         return proprietarioService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/proprietarios/{id}")
     public ResponseEntity<Proprietario> getProprietarioById(@PathVariable Long id) {
         Optional<Proprietario> proprietario = proprietarioService.findById(id);
         return proprietario.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
@@ -40,7 +40,7 @@ public class ProprietarioController {
         return new ResponseEntity<>(savedProprietario, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/proprietarios/{id}")
     public ResponseEntity<Proprietario> updateProprietario(@PathVariable Long id, @RequestBody Proprietario proprietario) {
         Optional<Proprietario> existingProprietario = proprietarioService.findById(id);
         if (existingProprietario.isPresent()) {
@@ -51,7 +51,7 @@ public class ProprietarioController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/proprietarios/{id}")
     public ResponseEntity<Void> deleteProprietario(@PathVariable Long id) {
         proprietarioService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
