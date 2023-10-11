@@ -36,7 +36,7 @@ public class ProprietarioService {
 		proprietarioRepository.deleteById(id);
 	}
 
-	public Proprietario update(Long id, Proprietario updatedProprietario) {
+	public Proprietario updateProprietario(Long id, Proprietario updatedProprietario) {
 		Optional<Proprietario> existingProprietario = proprietarioRepository.findById(id);
 		if (existingProprietario.isPresent()) {
 			Proprietario proprietario = existingProprietario.get();
