@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'MotorApp'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1D38C5542851414AB7C06A542F8E0D1D }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A2E53F259E0B446F99EFEA3B2C485C84 }}
           package: '*.jar'
