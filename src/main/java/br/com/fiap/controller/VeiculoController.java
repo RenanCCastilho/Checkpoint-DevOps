@@ -44,7 +44,7 @@ public class VeiculoController {
     public ResponseEntity<Veiculo> updateVeiculo(@PathVariable Long id, @RequestBody Veiculo veiculo) {
         Optional<Veiculo> existingVeiculo = veiculoService.findById(id);
         if (existingVeiculo.isPresent()) {
-            Veiculo updatedVeiculo = veiculoService.update(id, veiculo);
+            Veiculo updatedVeiculo = veiculoService.updateVeiculo(id, veiculo);
             return new ResponseEntity<>(updatedVeiculo, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
