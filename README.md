@@ -1,141 +1,67 @@
-# Checkpoint-DevOps
+# MotorApp — API com Deploy Contínuo no Azure
 
-# Lista de Endpoints
-## ***Proprietarios***
-## GET 
-https://motorapp.azurewebsites.net/proprietarios
-### Descrição: Consulta a lista de proprietarios cadastrados.
-### Exemplo de resposta:
-          
-          {
-              "nome": "Proprietario",
-              "cidade": "Cidade do Proprietario",
-              "telefone": "Telefone do Proprietario"
-          }
+![Java](https://img.shields.io/badge/Java-17-ED8B00?logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.1-6DB33F?logo=springboot&logoColor=white)
+![Azure](https://img.shields.io/badge/Azure_App_Service-0078D4?logo=microsoftazure&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)
+![Oracle](https://img.shields.io/badge/Oracle_DB-F80000?logo=oracle&logoColor=white)
 
+API REST para cadastro de **veículos e seus proprietários**, com deploy contínuo no **Azure App Service** via **GitHub Actions**. A cada push na `main`, o projeto é compilado com Maven e publicado automaticamente.
 
-## POST
-https://motorapp.azurewebsites.net/proprietarios
-### Descrição: Cadastra um novo proprietario.
-### Exemplo de solicitação:
+Também existe uma versão em container: [Checkpoint-DevOps6](https://github.com/RenanCCastilho/Checkpoint-DevOps6).
 
-          {
-          "nome": "Novo Proprietario",
-          "cidade": "Cidade do Novo Proprietario",
-          "telefone": "Telefone do Novo Proprietario"
-          }
+## Endpoints
 
+| Recurso | Rota base | Operações |
+|---|---|---|
+| Proprietários | `/proprietarios` | `GET`, `GET /{id}`, `POST`, `PUT /{id}`, `DELETE /{id}` |
+| Veículos | `/veiculos` | `GET`, `GET /{id}`, `POST`, `PUT /{id}`, `DELETE /{id}` |
 
+**Exemplo — cadastrar proprietário**
 
-## PUT 
-https://motorapp.azurewebsites.net/proprietarios/1
-### Descrição: Atualiza informações sobre o proprietario cadastrado.
-### Exemplo de solicitação:
+```json
+POST /proprietarios
+{
+  "nome": "Maria Souza",
+  "cidade": "São Paulo",
+  "telefone": "(11) 99999-0000"
+}
+```
 
-            {
-              "nome": "Atualizar Proprietario",
-              "cidade": "Atualizar cidade do Proprietario",
-              "telefone": "Atualizar telefone do Proprietario"
-          }
+**Exemplo — cadastrar veículo** (use o id de um proprietário já cadastrado)
 
+```json
+POST /veiculos
+{
+  "modelo": "Onix",
+  "montadora": "Chevrolet",
+  "anoFabricacao": 2023,
+  "km": 0.0,
+  "proprietario": { "id": 1 }
+}
+```
 
+## Como executar localmente
 
-## DELETE 
-https://motorapp.azurewebsites.net/proprietarios/1
-### Descrição: Deleta o proprietario selecionado. No caso deletará o proprietario com o id = 1.
-## ***Veiculos***
-## GET 
-https://motorapp.azurewebsites.net/veiculos
-### Descrição: Consulta a lista de veículos cadastrados. 
-### Exemplo de resposta:
-          
-          {
-              "modelo": "Modelo do Veiculo",
-              "montadora": "Montadora do Veiculo",
-              "anoFabricacao": 2023,
-              "km": 0.0,
-              "proprietario": {
-                  "id": 1
-                  "nome": "Nome do Proprietario"
-                  "cidade": "Cidade do Propretario"
-                  "telefone": "Telefone do Proprietario"
-              }
-          }
-          
+1. Crie as tabelas executando o [`DDL_BD.txt`](DDL_BD.txt) no seu banco Oracle.
+2. Rode a aplicação:
 
-## POST
-https://motorapp.azurewebsites.net/veiculos
-### Observação: Colocar id de um proprietario ja cadastrado!
-### Descrição: Cadastra um novo veículo
-### Exemplo de solicitação:
+```bash
+export DB_USERNAME=seu_usuario DB_PASSWORD=sua_senha
+./mvnw spring-boot:run
+```
 
-          {
-              "modelo": "Modelo do Novo Veiculo",
-              "montadora": "Montadora do Novo Veiculo",
-              "anoFabricacao": 2023,
-              "km": 0.0,
-              "proprietario": {
-                  "id": 1
-              }
-          }
+## Deploy no Azure App Service
 
+1. **Banco:** execute o `DDL_BD.txt` no Oracle (pelo SQL Developer, por exemplo).
+2. **Web App:** no portal do Azure, crie um App Service com pilha **Java 17**, na região **Brazil South**.
+3. **Implantação:** habilite a implantação contínua, autorize o GitHub e selecione este repositório na branch `main`.
+4. **Rede:** deixe o acesso público ativado. O Application Insights pode ficar desabilitado.
+5. **Variáveis:** em *Configuração → Configurações do aplicativo*, defina `DB_USERNAME` e `DB_PASSWORD`.
+6. **Pipeline:** revise e crie o recurso. O Azure gera o workflow em `.github/workflows/`, e o build e o deploy podem ser acompanhados na aba **Actions**.
 
-## PUT 
-https://motorapp.azurewebsites.net/veiculos/1
-### Descrição: Atualiza informações sobre o veículo cadastrado.
-### Exemplo de solicitação:
+> A raiz do Web App não tem página inicial. Acesse diretamente `/proprietarios` ou `/veiculos`.
 
-       {
-              "modelo": "Atualiza o modelo do Veiculo",
-              "montadora": "Atualiza a montadora do Veiculo",
-              "anoFabricacao": 2023,
-              "km": 0.0,
-              "proprietario": {
-                  "id": 1
-              }
-          }
+---
 
-
-## DELETE 
-https://motorapp.azurewebsites.net/veiculos/1
-### Descrição: Deleta o veículo selecionado. No caso deletará o veículo com o id = 1.
-
-
-# How To Implementação do projeto em nuvem
-
-1) 
-No SqlDeveloper acesse sua conta no banco e execute o script que está no arquivo txt "DDL_BD";
-
-2) 
-Baixe nosso código fonte em nosso repositório no GitHub:
-https://github.com/RenanCCastilho/Checkpoint-DevOps;
-
-3)
-Na aba básico, defina o nome do seu web app;
-Na coluna pilha de runTime coloque Java17;
-Sistema Operacional: selecione o seu sistema operacional;
-região: Brazil South;
-
-4)
-Na aba implementação deixe a opção habilitar na coluna implementação contínua;
-Autorize a sua conta do github;
-Organização: nome de usuário do github;
-repositório: repositorio onde está o projeto;
-branch: main;
-
-5)
-Na aba rede deixe o acesso público ATIVADO;
-
-6)
-Na aba monitoramento deixe o Application Insights DESABILITADO;
-
-7)
-Após isso vá até a aba Revisar e criar e clique em criar;
-Aguarde a criação dos recursos e vá até o serviço de aplicativo criado;
-
-8)
-No github clique na aba Actions;
-Aguarde o Build e o Deploy;
-
-Obs:
-O link gerado abre uma página default, e como não temos essa página, precisamos usar os endpoints(/proprietarios) ou (/veiculos);
+Projeto acadêmico desenvolvido na **FIAP** (DevOps Tools & Cloud Computing, 2023).
